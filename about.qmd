@@ -6,14 +6,15 @@ about:
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://twitter.com/binxiepeterson?lang=en
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/bianca-peterson/
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/BinxiePeterson
 ---
 
-About this blog
+Hi there! I'm Bianca Peterson, a Data Scientist at Fathom Data. I have a passion for managing projects, teaching computational skills and analysing data.
+
+If you have a project that you want to get started or would like to get training in data analysis, visualisation and report writing, get in touch.
