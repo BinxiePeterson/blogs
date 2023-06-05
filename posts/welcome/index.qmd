@@ -1,12 +1,9 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
-date: "2023-05-29"
-categories: [news]
+title: "Connecting to a Postgres database via RStudio"
+author: "Bianca Peterson"
+date: "2023-06-05"
+categories: [database, SQL]
+image: thumbnail.jpg
 ---
 
-This is the first post in a Quarto blog. Welcome!
-
-![](thumbnail.jpg)
-
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+The following post will demonstrate how you can connect to a Postgres database via RStudio.

@@ -4,27 +4,20 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Hi there! I’m Bianca Peterson, a Data Scientist at Fathom Data. I have a passion for managing projects, teaching computational skills and analysing data.\nIf you have a project that you want to get started or would like to get training in data analysis, visualisation and report writing, get in touch.\nYou can read more about my work [here](https://binxiepeterson.github.io/)."
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+    "text": "Hi there! I’m Bianca Peterson, a Data Scientist at Fathom Data. I have a passion for managing projects, teaching computational skills and analysing data.\nIf you have a project that you want to get started or would like to get training in data analysis, visualisation and report writing, get in touch.\nYou can read more about my work here."
   },
   {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "title": "Connecting to a Postgres database via RStudio",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "The following post will demonstrate how you can connect to a Postgres database via RStudio."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "blogs",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJun 1, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMay 29, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Connecting to a Postgres database via RStudio\n\n\n\n\n\n\n\ndatabase\n\n\nSQL\n\n\n\n\n\n\n\n\n\n\n\nJun 5, 2023\n\n\nBianca Peterson\n\n\n\n\n\n\nNo matching items"
   }
 ]
