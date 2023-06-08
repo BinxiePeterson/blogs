@@ -19,12 +19,14 @@ Alternatively, you can use the postgres docker image to create your own PostgreS
 2.  Pull the Postgres Docker Official Image from Dockerhub by running the following command in your terminal:
 
     ```{bash}
+    #| eval: false
     docker pull postgres
     ```
 
 3.  Start a Postgres instance by running the following command in your terminal:
 
     ```{bash}
+    #| eval: false
     docker run --name mytestdb -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
     ```
 
@@ -57,6 +59,7 @@ DB_DATABASE="mytestdb"
 Inside an R script, load your libraries and connect to the database:
 
 ```{r}
+#| eval: false
 # Load libraries.
 library(DBI)
 library(RPostgreSQL)
@@ -87,6 +90,7 @@ You will need to make variable names database safe, which means that names must:
 To clean up the variable names, you can make use of the following function:
 
 ```{r}
+#| eval: false
 # Custom function to format variable names.
 format_names <- function(names) {
   names <- gsub(pattern = '[^a-z0-9]+',
@@ -103,6 +107,7 @@ colnames(my_data) <- format_names(colnames(mydata))
 ### Write the dataframe to a table in the Postgres database
 
 ```{r}
+#| eval: false
 dbWriteTable(conn = con,
              name = "cars",
              value = my_data,
@@ -120,17 +125,21 @@ If you don't want to overwrite an existing table, use the option `append = TRUE`
 You can return an entire table from the Postgres database by running the following in R:
 
 ```{r}
+#| eval: false
 my_data <- dbReadTable(con, "cars")
 ```
 
 Or you could use an SQL query to extract subsets of data:
 
 ```{r}
+#| eval: false
 my_subset <- dbGetQuery(con, "select column1, column2 from cars")
 ```
 
 ### Close the database connection
 
 ```{r}
+#| eval: false
 dbDisconnect(con)
 ```
+

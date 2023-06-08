@@ -1,1 +1,1 @@
-{"headings":[],"entries":[]}
+{"headings":["launch-a-postgres-database","define-database-credentials","connect-to-the-postgres-database","prepare-data-for-the-postgres-database","write-the-dataframe-to-a-table-in-the-postgres-database","query-the-postgres-database","close-the-database-connection"],"entries":[]}
