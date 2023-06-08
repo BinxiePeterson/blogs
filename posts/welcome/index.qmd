@@ -1,9 +1,136 @@
 ---
-title: "Connecting to a Postgres database via RStudio"
+title: "Writing a dataframe to a Postgres database via RStudio"
 author: "Bianca Peterson"
 date: "2023-06-05"
 categories: [database, SQL]
 image: thumbnail.jpg
 ---
 
-The following post will demonstrate how you can connect to a Postgres database via RStudio.
+The following post will demonstrate how you can connect to a PostgreSQL (also called Postgres) database via RStudio and write the dataframe to a Postgres table.
+
+### Launch a Postgres database
+
+You can download PostgreSQL as a ready-to-use package for your operating system from [this page](https://www.postgresql.org/download/).
+
+Alternatively, you can use the postgres docker image to create your own PostgreSQL database:
+
+1.  Download and install [Docker](https://docs.docker.com/engine/install/).
+
+2.  Pull the Postgres Docker Official Image from Dockerhub by running the following command in your terminal:
+
+    ```{bash}
+    docker pull postgres
+    ```
+
+3.  Start a Postgres instance by running the following command in your terminal:
+
+    ```{bash}
+    docker run --name mytestdb -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+    ```
+
+`--rm` will remove the container when it is stopped.
+
+`-d` will run the container in 'detatched' mode, allowing you to use the same terminal window for other tasks.
+
+`-e` passes an environment variable, like the database password.
+
+`--name` gives the container a name when you run it.
+
+`-p` maps port 5432 on the container to the host port 5432.
+
+If there is already another process occupying port `5432` on your computer, you change the port to `5433:5432`, for example.
+
+### Define database credentials
+
+In RStudio, choose `New Blank File` and create a `.Renviron` file within your current working directory. Inside this `.Renviron` file, specify the database credentials from the previous section:
+
+``` bash
+DB_HOST="localhost"
+DB_PORT="5432"
+DB_USER="postgres"
+DB_PASSWORD="mysecretpassword"
+DB_DATABASE="mytestdb"
+```
+
+### Connect to the Postgres database
+
+Inside an R script, load your libraries and connect to the database:
+
+```{r}
+# Load libraries.
+library(DBI)
+library(RPostgreSQL)
+
+# Establish a connection to your PostgreSQL database.
+con <- dbConnect(
+  drv = dbDriver("PostgreSQL"),
+  dbname = Sys.getenv("DB_DATABASE"),
+  host = Sys.getenv("DB_HOST"),
+  port = Sys.getenv("DB_PORT"),
+  user = Sys.getenv("DB_USER"),
+  password = Sys.getenv("DB_PASSWORD")
+)
+```
+
+### Prepare data for the Postgres database
+
+You will need to make variable names database safe, which means that names must:
+
+-   contain only letters (a-z, A-Z), numbers (0-9), or underscores (\_);
+
+-   begin with a letter or underscore (not a number);
+
+-   be lower case and unique; and
+
+-   be less then 59 characters.
+
+To clean up the variable names, you can make use of the following function:
+
+```{r}
+# Custom function to format variable names.
+format_names <- function(names) {
+  names <- gsub(pattern = '[^a-z0-9]+',
+                replacement = '_', tolower(names))
+  names <- make.names(names, unique=TRUE, allow_=TRUE)
+  names <- gsub('.','_', names, fixed=TRUE)
+  names
+}
+
+# Use custom function to format variable names.
+colnames(my_data) <- format_names(colnames(mydata))
+```
+
+### Write the dataframe to a table in the Postgres database
+
+```{r}
+dbWriteTable(conn = con,
+             name = "cars",
+             value = my_data,
+             overwrite = TRUE)
+```
+
+`name` specifies the name of the table (e.g. `cars`);
+
+`value` specifies which dataframe to write to a table.
+
+If you don't want to overwrite an existing table, use the option `append = TRUE`.
+
+### Query the Postgres database
+
+You can return an entire table from the Postgres database by running the following in R:
+
+```{r}
+my_data <- dbReadTable(con, "cars")
+```
+
+Or you could use an SQL query to extract subsets of data:
+
+```{r}
+my_subset <- dbGetQuery(con, "select column1, column2 from cars")
+```
+
+### Close the database connection
+
+```{r}
+dbDisconnect(con)
+```
