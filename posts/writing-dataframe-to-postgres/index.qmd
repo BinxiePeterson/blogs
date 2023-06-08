@@ -101,7 +101,7 @@ format_names <- function(names) {
 }
 
 # Use custom function to format variable names.
-colnames(my_data) <- format_names(colnames(mydata))
+colnames(cars) <- format_names(colnames(cars))
 ```
 
 ### Write the dataframe to a table in the Postgres database
@@ -110,7 +110,7 @@ colnames(my_data) <- format_names(colnames(mydata))
 #| eval: false
 dbWriteTable(conn = con,
              name = "cars",
-             value = my_data,
+             value = cars,
              overwrite = TRUE)
 ```
 
@@ -142,4 +142,3 @@ my_subset <- dbGetQuery(con, "select column1, column2 from cars")
 #| eval: false
 dbDisconnect(con)
 ```
-

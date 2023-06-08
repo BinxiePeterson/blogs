@@ -10,5 +10,8 @@
   },
   "index.qmd": {
     "index.html": "20c0ff07"
+  },
+  "posts/writing-dataframe-to-postgres/index.qmd": {
+    "index.html": "0cbb0651"
   }
 }
